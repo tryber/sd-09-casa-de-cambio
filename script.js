@@ -5,9 +5,11 @@ const handleRates = (ratesData) => {
   
   entries.forEach((array) => {
     const [ currency, rate ] = array;
+
+    const formattedRate = Math.round(rate * 100) / 100;
     
     const li = document.createElement('li');
-    li.innerHTML = `<strong>${currency}:</strong> ${rate.toFixed(2)}`
+    li.innerHTML = `<strong>${currency}:</strong> ${formattedRate}`
 
     currencyList.appendChild(li);
   });
@@ -52,9 +54,16 @@ const fetchCurrencyAsyncAwait = async (currency) => {
   
 }
 
+const clearList = () => {
+  const currencyList = document.querySelector('#currency-list');
+  currencyList.innerHTML = '';
+}
+
 const handleSearchEvent = () => {
   const searchInput = document.querySelector('#currency-input');
   const currency = searchInput.value.toUpperCase();
+
+  clearList();
 
   fetchCurrencyAsyncAwait(currency);
 }
