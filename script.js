@@ -7,7 +7,7 @@ const handleRates = (ratesData) => {
     const [ currency, rate ] = array;
     
     const li = document.createElement('li');
-    li.innerHTML = `<strong>${currency}:</strong> ${rate}`
+    li.innerHTML = `<strong>${currency}:</strong> ${rate.toFixed(2)}`
 
     currencyList.appendChild(li);
   });
@@ -30,11 +30,33 @@ const fetchCurrency = (currency) => {
     });
 }
 
+const fetchCurrencyAsyncAwait = async (currency) => {
+  // SE eu vou usar await dentro de uma função, então
+  // a assinatura da função TEM QUE TER a palavra async
+
+  const endpoint = `https://api.ratesapi.io/api/latest?base=${currency}`;
+
+  try {
+    const response = await fetch(endpoint);
+    const object = await response.json();
+
+    if (object.error) {
+      throw new Error(object.error);
+    }
+
+    handleRates(object);
+  } catch (error) {
+    window.alert(error);
+  }
+  
+  
+}
+
 const handleSearchEvent = () => {
   const searchInput = document.querySelector('#currency-input');
   const currency = searchInput.value.toUpperCase();
 
-  fetchCurrency(currency);
+  fetchCurrencyAsyncAwait(currency);
 }
 
 const setupEvents = () => {
