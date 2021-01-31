@@ -33,7 +33,12 @@ section {
 h1 {
   font-family: "Satisfy", cursive;
   color: var(--primary);
-  font-size: 64px;
+  font-size: 30px;
+}
+h2 {
+  font-family: "Satisfy", cursive;
+  color: var(--primary);
+  font-size: 40px;
 }
 label {
   color: var(--font-secondary);
@@ -96,6 +101,10 @@ ul li:nth-child(odd) {
   background-color: var(--secondary);
 }
 
+ul li:nth-child(odd) strong {
+  background-color: transparent;
+}
+
 ::-webkit-scrollbar {
   background-color: transparent;
 }
@@ -112,4 +121,14 @@ ul li:nth-child(odd) {
 ::-webkit-scrollbar-thumb {
   background-color: var(--primary);
   border-radius: 10px;
+}
+
+#trybe {
+  width: 25px;
+  height: 25px
+}
+
+footer {
+  display: inline-flex;
+  color: var(--primary);
 }
