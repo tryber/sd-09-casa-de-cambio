@@ -127,3 +127,8 @@ ul li:nth-child(odd) strong {
   width: 25px;
   height: 25px
 }
+
+footer {
+  display: inline-flex;
+  color: var(--primary);
+}
